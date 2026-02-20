@@ -1,3 +1,16 @@
 [tools]
 go = "1.25.3"
 "npm:htmx.org" = "2.0.8"
+
+[tasks.build]
+description = "Build application"
+run = """
+go build -o build/blogo ./cmd/blogo
+chmod +x ./build/blogo
+"""
+
+[tasks.clean]
+description = "Cleanup build directory"
+run = """
+rm -rf ./build/blogo
+"""
