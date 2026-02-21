@@ -1,3 +1,5 @@
+github.com/azrod/go-timesort v0.0.0-20260114142944-c36e7547c67b h1:KOX6zF9wJICmkk3oiqDDE2fozJjXPZhpWp3TNos64Qw=
+github.com/azrod/go-timesort v0.0.0-20260114142944-c36e7547c67b/go.mod h1:xzx6HvbGUZgfPnVsDxylC9zYAYfF2tQZ2s4qoMS1Q68=
 github.com/gomarkdown/markdown v0.0.0-20260217112301-37c66b85d6ab h1:VYNivV7P8IRHUam2swVUNkhIdp0LRRFKe4hXNnoZKTc=
 github.com/gomarkdown/markdown v0.0.0-20260217112301-37c66b85d6ab/go.mod h1:JDGcbDT52eL4fju3sZ4TeHGsQwhG9nbDV21aMyhwPoA=
 golang.org/x/text v0.34.0 h1:oL/Qq0Kdaqxa1KbNeMKwQq0reLCCaFtqu2eNuSeNHbk=

@@ -5,6 +5,8 @@
     <title>{{ .Title }}</title>
   </head>
   <body>
+  {{ .Article.Content }}
+  <p> Added on: {{ .Article.MetadataLastModified }} </p>
   <ul> 
     {{range .ArticleList}}<li><a href="#">{{ .Title }}</a></li>{{end}}
   </ul>
