@@ -9,8 +9,17 @@ go build -o build/blogo ./cmd/blogo
 chmod +x ./build/blogo
 """
 
+[tasks.install]
+description = "tbd"
+
+# todo: make link path unique
+# fix: only can be run from ROOT project dir, i want to run it from wherever
+# so make dist/ directory or smth
 [tasks.clean]
 description = "Cleanup build directory"
+depends = ["build"]
 run = """
 rm -rf ./build/blogo
+sudo rm -f /usr/local/bin/blogo
+sudo ln -sf /Users/michal/Dev/streams/blogo/build/blogo /usr/local/bin/blogo
 """
