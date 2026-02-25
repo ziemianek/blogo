@@ -11,16 +11,14 @@
     <div class="wrapper">
         <header class="top-space"></header>
         <div class="top-row">
-          <div id="added-on-date"> Added on: {{ .Article.Metadata.LastModifiedStr }} </div>
+            <div id="added-on-date"></div>
         </div>
         <main>
-            <article>
-            {{ .Article.Content }}
-            </article>
+            <article id="content-area">
+                </article>
             <aside>
                 <ul id="article-list">
-                    {{range .ArticleList }}<li><a href="#">{{ .Title }}</a></li>{{end}}
-                </ul>
+                    </ul>
             </aside>
         </main>
         <footer class="bottom-row">
@@ -33,6 +31,8 @@
             </div>
         </footer>
     </div>
+
+    <script src="./data.js"></script>
+    <script src="./web/static/js/main.js"></script>
 </body>
 </html>
-

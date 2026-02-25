@@ -1,12 +1,8 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"github.com/gomarkdown/markdown"
-	"github.com/gomarkdown/markdown/html"
-	"github.com/gomarkdown/markdown/parser"
-	"golang.org/x/text/cases"
-	"golang.org/x/text/language"
 	"html/template"
 	"log"
 	"os"
@@ -14,6 +10,12 @@ import (
 	"slices"
 	"strings"
 	"time"
+
+	"github.com/gomarkdown/markdown"
+	"github.com/gomarkdown/markdown/html"
+	"github.com/gomarkdown/markdown/parser"
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
 )
 
 const Title string = "Test strona"
@@ -24,9 +26,9 @@ type Metadata struct {
 }
 
 type Article struct {
-	Title    string
-	Content  template.HTML
-	Metadata Metadata
+	Title    string        `json:"title"`
+	Content  template.HTML `json:"content"`
+	Metadata Metadata      `json:"metadata"`
 }
 
 type config struct {
@@ -38,6 +40,30 @@ type config struct {
 func GetArticleName(filepath string) string {
 	articleSplitted := strings.Split(filepath, "/")
 	return articleSplitted[len(articleSplitted)-1]
+}
+
+func SaveArticleToJson(articles []Article) error {
+	// 1. Tworzymy plik (dodajemy też obsługę błędów, to zawsze dobra praktyka)
+	f, err := os.Create("output.json")
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	// 2. Tworzymy enkoder i podpinamy go BEZPOŚREDNIO pod nasz plik 'f'
+	encoder := json.NewEncoder(f)
+
+	// 3. Ustawiamy opcje enkodera
+	encoder.SetEscapeHTML(false) // Brak "krzaczków" zamiast tagów HTML
+	encoder.SetIndent("", "\t")  // Ładne wcięcia z użyciem tabulatora
+
+	// 4. Kodujemy tablicę articles bezpośrednio do pliku
+	err = encoder.Encode(articles)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func SortArticlesByModified(articles []Article) {
@@ -126,6 +152,8 @@ func main() {
 	file, err := os.Create("output.html")
 	check(err)
 	defer file.Close()
+
+	SaveArticleToJson(articles)
 
 	tpl := template.Must(template.ParseFiles("./web/static/html/index.tmpl"))
 

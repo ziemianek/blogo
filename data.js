@@ -1,0 +1,26 @@
+const myArticles = [
+	{
+		"title": "Test Article ",
+		"content": "<h1>Hello world</h1>\n\n<ul>\n<li>li</li>\n<li>asaa</li>\n</ul>\n\n<p>aspodkapsodkopas\nasoaskldjaslkd\naklsjdaslkjd\nalskdjaslkdjaslkjdp</p>\n\n<h1>Hello world</h1>\n\n<p>asldkjasklod\nasd</p>\n\n<h1>Test dupa</h1>\n\n<h2>dupa dupa</h2>\n\n<ul>\n<li>item1</li>\n<li>item2</li>\n</ul>\n",
+		"metadata": {
+			"LastModified": "2026-02-21T20:37:44.954365443+01:00",
+			"LastModifiedStr": "2026-02-21"
+		}
+	},
+	{
+		"title": "My First Test ",
+		"content": "<h1>Test test</h1>\n\n<h3>hello world</h3>\n\n<p>asdkl;jasldkjaskldjas\nkdjas\ndkasj\nkdajsd\nkasjd\nskaj</p>\n",
+		"metadata": {
+			"LastModified": "2026-02-21T20:17:06.459914024+01:00",
+			"LastModifiedStr": "2026-02-21"
+		}
+	},
+	{
+		"title": "New Article ",
+		"content": "",
+		"metadata": {
+			"LastModified": "2026-02-21T20:07:20.338102986+01:00",
+			"LastModifiedStr": "2026-02-22"
+		}
+	}
+]
