@@ -1,32 +1,38 @@
-<!doctype html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <title>{{ .Title }}</title>
-    <link rel="stylesheet" href="./web/static/css/reset.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./web/static/css/main.css">
-  </head>
-  <body>
-  <nav>
-  <ul id="nav-items">
-    <li><a href="#"> Home </a></li>
-    <li><a href="#"> Test </a></li>
-  </ul>
-  </nav>
-  <header id="added-on-date"> Added on: {{ .Article.Metadata.LastModifiedStr }} </header>
-  <main>
-  <article>
-  {{ .Article.Content }} 
-  </article>
-  <aside id="article-list"> 
-    {{range .ArticleList }}<li><a href="#">{{ .Title }}</a></li>{{end}}
-  </aside>
-</main>
-<footer>
-    <ul id="footer-items">
-    <li><a href="#"> Home </a></li>
-    <li><a href="#"> Test </a></li>
-    </ul>
-</footer>
-  </body>
+    <link rel="stylesheet" href="./web/static/css/reset.css">
+</head>
+<body>
+    <div class="wrapper">
+        <header class="top-space"></header>
+        <div class="top-row">
+          <div id="added-on-date"> Added on: {{ .Article.Metadata.LastModifiedStr }} </div>
+        </div>
+        <main>
+            <article>
+            {{ .Article.Content }}
+            </article>
+            <aside>
+                <ul id="article-list">
+                    {{range .ArticleList }}<li><a href="#">{{ .Title }}</a></li>{{end}}
+                </ul>
+            </aside>
+        </main>
+        <footer class="bottom-row">
+            <div class="footer-box">
+                <ul class="footer-items">
+                    <li><a href="#">Strona</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+</body>
 </html>
+
