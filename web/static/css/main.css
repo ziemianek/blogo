@@ -1,0 +1,73 @@
+:root {
+  --bg: #0d0a0b;
+  --text: #f3eff5;
+  --hover: #5aff15;
+  --border: #444; /* Kolor obramowania jak na szkicu */
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 0;
+  display: grid;
+  /* Definiujemy siatkę: nagłówki na całą szerokość, środek dzielony */
+  grid-template-columns: 1fr; 
+  font-family: sans-serif;
+}
+
+/* --- Layout Elementy --- */
+
+nav, footer, #added-on-date {
+  border: 1px solid var(--border);
+  padding: 15px;
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 4fr 1fr; 
+  align-items: start;
+}
+
+a {
+    color: var(--text);
+}
+
+a:hover {
+    color: var(--hover);
+}
+
+article {
+  border: 1px solid #ff7b72; /* Czerwona ramka ze szkicu */
+  padding: 25px;
+  min-height: 600px;
+}
+
+#article-list {
+  border: 1px solid var(--border);
+  padding: 20px;
+  list-style: none;
+}
+
+/* --- Detale Typograficzne --- */
+
+h1 {
+  color: var(--text);
+  font-size: 2.5rem;
+}
+
+/* Styl dla daty pod navbarem */
+#added-on-date {
+  background-color: transparent; /* Zmienione z białego na przezroczysty */
+  border-color: var(--border);
+  font-style: italic;
+  text-align: left;
+}
+
+#nav-items, #footer-items {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  list-style: none;
+  padding: 0;
+}

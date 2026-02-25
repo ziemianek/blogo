@@ -19,12 +19,13 @@ import (
 const Title string = "Test strona"
 
 type Metadata struct {
-	LastModified time.Time
+	LastModified    time.Time
+	LastModifiedStr string
 }
 
 type Article struct {
 	Title    string
-	Content  string
+	Content  template.HTML
 	Metadata Metadata
 }
 
@@ -43,6 +44,10 @@ func SortArticlesByModified(articles []Article) {
 	slices.SortFunc(articles, func(a, b Article) int {
 		return b.Metadata.LastModified.Compare(a.Metadata.LastModified)
 	})
+}
+
+func FormatDate(date time.Time) string {
+	return date.Format("2006-01-02")
 }
 
 // todo: Make it use pointers
@@ -85,9 +90,12 @@ func GetAllArticles(articleDir string) ([]Article, error) {
 			return nil, err
 		}
 		articles = append(articles, Article{
-			Title:    articleName,
-			Content:  string(articleContent),
-			Metadata: Metadata{LastModified: articleLastUpdated},
+			Title:   articleName,
+			Content: template.HTML(articleContent),
+			Metadata: Metadata{
+				LastModified:    articleLastUpdated,
+				LastModifiedStr: FormatDate(articleLastUpdated),
+			},
 		})
 	}
 	return articles, nil
@@ -119,8 +127,7 @@ func main() {
 	check(err)
 	defer file.Close()
 
-	tpl, err := template.ParseFiles("./web/static/html/index.tmpl")
-	check(err)
+	tpl := template.Must(template.ParseFiles("./web/static/html/index.tmpl"))
 
 	tpl.Execute(file, &config{
 		Title:       Title,

@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <title>{{ .Title }}</title>
+    <link rel="stylesheet" href="./web/static/css/reset.css">
+    <link rel="stylesheet" href="./web/static/css/main.css">
   </head>
   <body>
-  {{ .Article.Content }}
-  <p> Added on: {{ .Article.MetadataLastModified }} </p>
-  <ul> 
-    {{range .ArticleList}}<li><a href="#">{{ .Title }}</a></li>{{end}}
+  <nav>
+  <ul id="nav-items">
+    <li><a href="#"> Home </a></li>
+    <li><a href="#"> Test </a></li>
   </ul>
+  </nav>
+  <header id="added-on-date"> Added on: {{ .Article.Metadata.LastModifiedStr }} </header>
+  <main>
+  <article>
+  {{ .Article.Content }} 
+  </article>
+  <aside id="article-list"> 
+    {{range .ArticleList }}<li><a href="#">{{ .Title }}</a></li>{{end}}
+  </aside>
+</main>
+<footer>
+    <ul id="footer-items">
+    <li><a href="#"> Home </a></li>
+    <li><a href="#"> Test </a></li>
+    </ul>
+</footer>
   </body>
 </html>
