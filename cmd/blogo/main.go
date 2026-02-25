@@ -18,7 +18,7 @@ import (
 	"golang.org/x/text/language"
 )
 
-const Title string = "Test strona"
+const Title string = "Ziemski Blog"
 
 type Metadata struct {
 	LastModified    time.Time
@@ -43,19 +43,20 @@ func GetArticleName(filepath string) string {
 }
 
 func SaveArticleToJson(articles []Article) error {
-	// 1. Tworzymy plik (dodajemy też obsługę błędów, to zawsze dobra praktyka)
-	f, err := os.Create("output.json")
+	f, err := os.Create("./dist/data.js")
 	if err != nil {
 		return err
 	}
 	defer f.Close()
-
-	// 2. Tworzymy enkoder i podpinamy go BEZPOŚREDNIO pod nasz plik 'f'
+	_, err = f.WriteString("const myArticles = ")
+	if err != nil {
+		fmt.Println("Error writing prefix:", err)
+		return err
+	}
 	encoder := json.NewEncoder(f)
 
-	// 3. Ustawiamy opcje enkodera
-	encoder.SetEscapeHTML(false) // Brak "krzaczków" zamiast tagów HTML
-	encoder.SetIndent("", "\t")  // Ładne wcięcia z użyciem tabulatora
+	encoder.SetEscapeHTML(false)
+	encoder.SetIndent("", "\t")
 
 	// 4. Kodujemy tablicę articles bezpośrednio do pliku
 	err = encoder.Encode(articles)
@@ -101,6 +102,8 @@ func GetAllArticles(articleDir string) ([]Article, error) {
 		log.Fatal(err)
 		return nil, err
 	}
+	fmt.Println(articleDir)
+	fmt.Println(filenames)
 	for _, a := range filenames {
 		articleContent, err := os.ReadFile(a)
 		if err != nil {
@@ -145,11 +148,11 @@ func main() {
 		}
 	}
 
-	articles, err := GetAllArticles("./web/static/articles")
+	articles, err := GetAllArticles("./articles")
 	SortArticlesByModified(articles)
 	check(err)
 
-	file, err := os.Create("output.html")
+	file, err := os.Create("./dist/index.html")
 	check(err)
 	defer file.Close()
 
